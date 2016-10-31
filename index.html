@@ -39,6 +39,7 @@
 
     var i = new Itineraire([48.856667, 2.350987], [40.714268, -74.005974], 1000);
     route = i.getItineraire();
+    console.log(route);
 
     function myMap() {
       var mapCanvas = document.getElementById("map");
@@ -47,11 +48,6 @@
         zoom: 5
       };
       var map = new google.maps.Map(mapCanvas, mapOptions);
-      var depart = new google.maps.Marker({
-        map: map,
-        position: {lat: 48.856667, lng: 2.350987},
-        title: 'Départ',
-      });
 
       var arrivee = new google.maps.Marker({
         map: map,
@@ -65,7 +61,7 @@
       //Creation + Ajout du depart au plan de vol
       var flightPlan = [{lat: 48.856667, lng: 2.350987}];
       //Pour chaque etapes, on met un marqueur sur la map
-      for (var i = 1; i < route.length; i++) {
+      for (var i = 0; i < route.length; i++) {
         steps[i] = new google.maps.Marker({
           map: map,
           position: {lat: route[i][0][0], lng: route[i][0][1]},
@@ -75,8 +71,6 @@
       }
       //Ajout de l'arrivee au plan de vol
       flightPlan.push({lat: 40.714268, lng: -74.005974})
-
-      console.log(flightPlan);
 
       var flightPath = new google.maps.Polyline({
         path: flightPlan,

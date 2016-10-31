@@ -59,14 +59,15 @@ class Itineraire {
 
   //Return array of points and cap
   calculerItineraire(position) {
-    if (this.nbEtapes * this.distanceEtapes >= (this.distanceOrtho(this.depart) * 180 / Math.PI) * 60 * 1.852) {
+    console.log(Math.floor(((this.distanceOrtho(this.depart) * 180 / Math.PI) * 60 * 1.852) /1000));
+    if (this.nbEtapes +1 >= (Math.floor(((this.distanceOrtho(this.depart) * 180 / Math.PI) * 60 * 1.852) / this.distanceEtapes))) {
       return this.listeEtapes;
     }
     else {
       //calcul le cap a suivre
       var cap = this.calculerCap(position);
 
-      //Ajoute la position et le cap à l'itineraire
+      //Ajoute la position actuelle et le cap à l'itineraire
       this.listeEtapes[this.nbEtapes] = [position, cap];
       this.nbEtapes += 1;
 

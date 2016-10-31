@@ -28,62 +28,13 @@
    <label>Longitude</label>
    <input id="PtArrLong" type="number" min="0" max="90" required>
    <br>
-   <button onclick="calculate();">Tracer</button>
+   <button onclick="showRoute();">Tracer</button>
   </div>
 
   <br>
 
   <script src="itineraire.js"></script>
-
-  <script>
-
-    var i = new Itineraire([48.856667, 2.350987], [40.714268, -74.005974], 1000);
-    route = i.getItineraire();
-    console.log(route);
-
-    function myMap() {
-      var mapCanvas = document.getElementById("map");
-      var mapOptions = {
-        center: new google.maps.LatLng(51.508742,-0.120850),
-        zoom: 5
-      };
-      var map = new google.maps.Map(mapCanvas, mapOptions);
-
-      var arrivee = new google.maps.Marker({
-        map: map,
-        position: {lat: 40.714268, lng: -74.005974},
-        title: 'Arrivée',
-      });
-
-      var infoWindows = [];
-      var steps = [];
-
-      //Creation + Ajout du depart au plan de vol
-      var flightPlan = [{lat: 48.856667, lng: 2.350987}];
-      //Pour chaque etapes, on met un marqueur sur la map
-      for (var i = 0; i < route.length; i++) {
-        steps[i] = new google.maps.Marker({
-          map: map,
-          position: {lat: route[i][0][0], lng: route[i][0][1]},
-          title: 'Changement de cap ' + i,
-        });
-        flightPlan.push({lat: route[i][0][0], lng: route[i][0][1]})
-      }
-      //Ajout de l'arrivee au plan de vol
-      flightPlan.push({lat: 40.714268, lng: -74.005974})
-
-      var flightPath = new google.maps.Polyline({
-        path: flightPlan,
-        geodesic: true,
-        strokeColor: "#0000FF",
-        strokeOpacity: 0.8,
-        strokeWeight: 2
-      })
-
-      flightPath.setMap(map);
-    }
-
-  </script>
+  <script src="map.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
   </body>
 </html>

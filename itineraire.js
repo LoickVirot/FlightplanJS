@@ -51,8 +51,8 @@ class Itineraire {
 
     var laOrigine = origine[0];
     var loOrigine = origine[1];
-    var laArrivee = laOrigine + (this.distanceEtapes * Math.cos(cap)) / 60;
-    var loArrivee = loOrigine + (this.distanceEtapes * Math.sin(cap)) / (60 * Math.cos(laOrigine));
+    var laArrivee = laOrigine + (this.distanceEtapes * Math.cos(cap * Math.PI / 180)) / 60;
+    var loArrivee = loOrigine + (this.distanceEtapes * Math.sin(cap * Math.PI / 180)) / (60 * Math.cos(laOrigine * Math.PI / 180));
 
     return [laArrivee, loArrivee];
   }

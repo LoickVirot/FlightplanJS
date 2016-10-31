@@ -1,15 +1,19 @@
 function showRoute() {
   //Recuperation des valeurs sous forme de flotants
-  inputDepartLat = parseFloat(document.getElementById("PtDepLat").value);
-  inputDepartLong = parseFloat(document.getElementById("PtDepLong").value);
-  inputArriveeLat = parseFloat(document.getElementById("PtArrLat").value);
-  inputArriveeLong = parseFloat(document.getElementById("PtArrLong").value);
+  var inputDepartLat = parseFloat(document.getElementById("PtDepLat").value);
+  var inputDepartLong = parseFloat(document.getElementById("PtDepLong").value);
+  var inputArriveeLat = parseFloat(document.getElementById("PtArrLat").value);
+  var inputArriveeLong = parseFloat(document.getElementById("PtArrLong").value);
 
   //Creation de l'itineraire
   var i = new Itineraire([inputDepartLat, inputDepartLong], [inputArriveeLat, inputArriveeLong], 1000);
 
   //Calcul de la route
   route = i.getItineraire();
+
+  //affiche sur la page la distance orthodromique
+  var info = document.getElementById("info");
+  info.innerHTML = "<p> Distance orthodromique : " + Math.round(i.getDistanceEnKm()) + " km</p>"
 
   //Creation de la map
   var map = myMap();

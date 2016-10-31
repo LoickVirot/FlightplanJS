@@ -8,7 +8,6 @@ class Itineraire {
     this.nbEtapes = 0;
   }
 
-
   //Retourne la distance orthodromique entre la position et le point d'arrivee
   distanceOrtho(position) {
     //Points en radians
@@ -19,6 +18,11 @@ class Itineraire {
 
     var d = Math.acos((Math.sin(arriveeLa) * Math.sin(departLa)) + (Math.cos(departLa) * Math.cos(arriveeLa) * Math.cos(arriveeLo - departLo)));
     return d;
+  }
+
+  //Retourne la distance orthodromique en km
+  getDistanceEnKm() {
+    return (this.distanceOrtho(this.depart) * 180 / Math.PI) * 60 * 1.852;
   }
 
   //Retourne le cap orthodromique pour aller de la position à l'arrivée
@@ -60,7 +64,7 @@ class Itineraire {
   //Return array of points and cap
   calculerItineraire(position) {
     console.log(Math.floor(((this.distanceOrtho(this.depart) * 180 / Math.PI) * 60 * 1.852) /1000));
-    if (this.nbEtapes +1 >= (Math.floor(((this.distanceOrtho(this.depart) * 180 / Math.PI) * 60 * 1.852) / this.distanceEtapes))) {
+    if ((this.distanceOrtho(position) * 180 / Math.PI) * 60 * 1.852 < this.distanceEtapes) {
       return this.listeEtapes;
     }
     else {

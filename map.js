@@ -4,9 +4,10 @@ function showRoute() {
   var inputDepartLong = parseFloat(document.getElementById("PtDepLong").value);
   var inputArriveeLat = parseFloat(document.getElementById("PtArrLat").value);
   var inputArriveeLong = parseFloat(document.getElementById("PtArrLong").value);
+  var distance = parseFloat(document.getElementById("distanceEtapes").value);
 
   //Creation de l'itineraire
-  var i = new Itineraire([inputDepartLat, inputDepartLong], [inputArriveeLat, inputArriveeLong], 1000);
+  var i = new Itineraire([inputDepartLat, inputDepartLong], [inputArriveeLat, inputArriveeLong], distance);
 
   //Calcul de la route
   route = i.getItineraire();

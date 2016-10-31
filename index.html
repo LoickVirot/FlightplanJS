@@ -34,10 +34,15 @@
         <span class="input-group-addon" id="label-arr-long">Longitude</span>
         <input type="number" class="form-control" aria-describedby="label-arr-long" id="PtArrLong" min="-180" max="180" required>
       </div>
+      <h3>Changements de cap</h3>
+      <div class="input-group">
+        <span class="input-group-addon" id="label-distance">Distance</span>
+        <input type="number" class="form-control" aria-describedby="label-distance" id="distanceEtapes" min="-180" max="180" required>
+      </div>
       <button class="btn btn-default" onclick="showRoute();">Tracer</button>
    </form>
    <div class="alert alert-info" id="info">
-     
+
    </div>
   </section>
   <script src="itineraire.js"></script>

@@ -15,6 +15,11 @@ function showRoute() {
   //affiche sur la page la distance orthodromique
   var info = document.getElementById("info");
   info.innerHTML = "<p> Distance orthodromique : " + Math.round(i.getDistanceEnKm()) + " km</p>"
+  var plan = document.getElementById("plan");
+  plan.innerHTML = "";
+  for (var i = 0; i < route.length; i++) {
+    plan.innerHTML += "<li><b>Etape " + i + "</b> : lat: " + route[i][0][0].toFixed(4) + " lng: " + route[i][0][1].toFixed(4) + " cap: " + route[i][1].toFixed(4) + "</li>";
+  }
 
   //Creation de la map
   var map = myMap();

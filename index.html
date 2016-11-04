@@ -15,7 +15,7 @@
     <div class="page-header">
       <h1>Navigation aérienne</h1>
     </div>
-    <form action="#">
+    <div>
       <h3>Point de départ</h3>
       <div class="input-group">
         <span class="input-group-addon" id="label-dep-lat">Latitude</span>
@@ -37,13 +37,14 @@
       <h3>Changements de cap</h3>
       <div class="input-group">
         <span class="input-group-addon" id="label-distance">Distance</span>
-        <input type="number" class="form-control" aria-describedby="label-distance" id="distanceEtapes" min="-180" max="180" required>
+        <input type="number" class="form-control" aria-describedby="label-distance" id="distanceEtapes" min="0" required>
       </div>
       <button class="btn btn-default" onclick="showRoute();">Tracer</button>
-   </form>
-   <div class="alert alert-info" id="info">
-
    </div>
+   <div class="alert alert-info" id="info"></div>
+   <ul id="plan">
+
+   </ul>
   </section>
   <script src="itineraire.js"></script>
   <script src="map.js"></script>

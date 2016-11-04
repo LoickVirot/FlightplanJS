@@ -29,14 +29,15 @@ function showRoute() {
 
   //Pour chaque etapes, on met un marqueur sur la map et on ajoute le point au plan de vol
   for (var i = 0; i < route.length; i++) {
-    new google.maps.Marker({
-      map: map,
-      position: {lat: route[i][0][0], lng: route[i][0][1]},
-      title: 'Changement de cap ' + i,
-    });
     //Ajout de la coordonnée dans le plan de vol
     flightPlan.push({lat: route[i][0][0], lng: route[i][0][1]})
   }
+  //Ajout du marqueur de Depart
+  var depart = new google.maps.Marker({
+    map: map,
+    position: {lat: inputDepartLat, lng: inputDepartLong},
+    title: 'Départ',
+  });
   //Ajout du marqueur d'arrivée
   var arrivee = new google.maps.Marker({
     map: map,
@@ -50,7 +51,7 @@ function showRoute() {
   //Tracer les lignes entres les coordonnées du plan de vol
   var flightPath = new google.maps.Polyline({
     path: flightPlan,
-    geodesic: true,
+    geodesic: false,
     strokeColor: "#0000FF",
     strokeOpacity: 0.8,
     strokeWeight: 2

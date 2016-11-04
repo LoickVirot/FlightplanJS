@@ -55,16 +55,15 @@ class Itineraire {
 
     var laOrigine = origine[0];
     var loOrigine = origine[1];
-    var laArrivee = laOrigine + (this.distanceEtapes * Math.cos(cap * Math.PI / 180)) / 60;
-    var loArrivee = loOrigine + (this.distanceEtapes * Math.sin(cap * Math.PI / 180)) / (60 * Math.cos(laOrigine * Math.PI / 180));
+    var laArrivee = laOrigine + (this.distanceEtapes * Math.cos(cap * Math.PI / 180)) / (60 * 1.852);
+    var loArrivee = loOrigine + (this.distanceEtapes * Math.sin(cap * Math.PI / 180)) / ((60 * 1.852) * Math.cos(laOrigine * Math.PI / 180));
 
     return [laArrivee, loArrivee];
   }
 
   //Return array of points and cap
   calculerItineraire(position) {
-    console.log(Math.floor(((this.distanceOrtho(this.depart) * 180 / Math.PI) * 60 * 1.852) /1000));
-    if ((this.distanceOrtho(position) * 180 / Math.PI) * 60 * 1.852 < this.distanceEtapes) {
+    if (((this.distanceOrtho(position) * 180 / Math.PI) * 60 * 1.852) < this.distanceEtapes) {
       return this.listeEtapes;
     }
     else {
@@ -80,6 +79,7 @@ class Itineraire {
 
       //je calcul l'itineraire à partir de la prochaine etape
       this.calculerItineraire(newPosition);
+      console.log(this.distanceOrtho(newPosition)* (180 / Math.PI) * 60 * 1.852);
     }
   }
 

@@ -8,6 +8,7 @@ class Itineraire {
     this.nbEtapes = 0;
   }
 
+	
   //Retourne la distance orthodromique entre la position et le point d'arrivee
   distanceOrtho(position) {
     //Points en radians
@@ -87,4 +88,5 @@ class Itineraire {
     this.calculerItineraire(this.depart)
     return this.listeEtapes
   }
+
 }

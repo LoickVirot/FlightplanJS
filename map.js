@@ -9,12 +9,29 @@ function showRoute() {
   //Creation de l'itineraire
   var i = new Itineraire([inputDepartLat, inputDepartLong], [inputArriveeLat, inputArriveeLong], distance);
 
+
   //Calcul de la route
   route = i.getItineraire();
 
+	var distReelParcours = route.length*distanceEtapes.value;
+ 	var z = new Itineraire([route[route.length-1][0][0], route[route.length-1][0][1]], [inputArriveeLat, inputArriveeLong], 1);
+	distReelParcours +=  Math.round(z.getDistanceEnKm())
+	var distOrtho = Math.round(i.getDistanceEnKm());
   //affiche sur la page la distance orthodromique
   var info = document.getElementById("info");
-  info.innerHTML = "<p> Distance orthodromique : " + Math.round(i.getDistanceEnKm()) + " km</p>"
+  info.innerHTML = "<p> Distance orthodromique : " + distOrtho
+ + " km</p>"+"<p> Distance réellement parcourue : " + distReelParcours + " Km"+ "</p>" + "<p>Delta: " + (distReelParcours - distOrtho) + " Km";
+
+//	NEED MODIF
+//	route.length //Nb d'étapes
+//	route[route.length-1][0][0].toFixed(4)//point  Latitude
+//	route[route.length-1][0][1].toFixed(4)//point Longitude 
+//	distanceEtapes.value // distTronçon
+//IDEA 
+//	LgRéel = nbEtapes*distTronçon + distanceOrtho(LastPoint - PointFinale);
+//Ouais y'a une approximation sur la fin, et alors ?
+
+
   var plan = document.getElementById("plan");
   plan.innerHTML = "";
   for (var i = 0; i < route.length; i++) {
